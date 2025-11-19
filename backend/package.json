@@ -1,0 +1,21 @@
+{
+  "name": "rentalmanagementsystem",
+  "version": "1.0.0",
+  "description": "Rental Management System for Personal Use",
+  "main": "./src/server.ts",
+  "scripts": {
+    "dev": "ts-node-dev --respawn --transpile-only src/server.ts"
+  },
+  "keywords": [],
+  "author": "Clarence Sabangan",
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {
+    "fastify": "^5.6.2"
+  },
+  "devDependencies": {
+    "@types/node": "^24.10.1",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.9.3"
+  }
+}
