@@ -11,10 +11,14 @@
   "license": "MIT",
   "type": "module",
   "dependencies": {
+    "@prisma/adapter-pg": "^7.0.0",
+    "@prisma/client": "^7.0.0",
+    "dotenv": "^17.2.3",
     "fastify": "^5.6.2"
   },
   "devDependencies": {
     "@types/node": "^24.10.1",
+    "prisma": "^6.19.0",
     "ts-node-dev": "^2.0.0",
     "typescript": "^5.9.3"
   }
