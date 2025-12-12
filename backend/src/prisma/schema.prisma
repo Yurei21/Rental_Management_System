@@ -6,3 +6,34 @@ generator client {
 datasource db {
   provider = "postgresql"
 }
+
+// Enums
+enum PaymentMethod {
+  Cash
+  Gcash
+  Bank
+  Online
+}
+
+enum GroupRole {
+  Admin
+  Moderator
+  Member
+}
+
+// Models
+
+model User {
+  id Int @id @default(autoincrement())
+  name String
+  email String @unique
+  password String
+  defaultGroupId Int?
+
+  defaultGroup Group? @relation("DefaultGroup", fields: [defaultGroupId], references: [id])
+
+}
+
+model Group {
+  id Int @id @default(autoincrement())
+}
