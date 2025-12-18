@@ -31,9 +31,51 @@ model User {
   defaultGroupId Int?
 
   defaultGroup Group? @relation("DefaultGroup", fields: [defaultGroupId], references: [id])
+  groupsCreated Group[] @relation("GroupCreator")
+  groupMemberships GroupMember[]
 
+  tenantsCreated Tenant[] @relation("TenantCreatedBy")
+  tenantsModified Tenant[] @relation("TenantModifiedBy")
+
+  invoicesCreated Invoice[] @relation("InvoiceCreatedBy")
+  invoicesModified Invoice[] @relation("InvoiceModifiedBy")
+
+  paymentsCreated payment[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  deletedAt DateTime?
 }
 
 model Group {
   id Int @id @default(autoincrement())
+  groupName String
+  createdBy Int
+
+  creator User @relation("GroupCreator", fields: [createdBy], references: [id])
+  members GroupMember[]
+  rooms Room[]
+  tenants Tenant[]
+
+  defaultUsers User[] @relation("DefaultGroup")
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  deletedAt DateTime?
+}
+
+model GroupMembers {
+  id Int @id @default(autoincrement())
+  groupId Int
+  userId Int
+  role GroupRole
+
+  group Group @relation(fields: [groupId], references: [id])
+  user User @relation(fields: [userId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  deletedAt DateTime?
+
+  @@unique([groupId, userId])
 }
